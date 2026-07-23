@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-lavender: var(--lavender);
+  --color-lavender-soft: var(--lavender-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-cormorant);
+  --font-script: var(--font-great-vibes);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #2d2d2d;
+  --cream: #fcfaf8;
+  --primary: #5b3e7e; /* royal purple */
+  --primary-foreground: #ffffff;
+  --lavender: #b9a4d4;
+  --lavender-soft: #efe9f6;
+  --gold: #b08d3f; /* soft gold */
+  --gold-soft: #d8c48a;
+  --border: #ece6f0;
+  --muted: #f6f3f9;
+  --muted-foreground: #6b6472;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), Georgia, serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), Georgia, serif;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: var(--font-great-vibes), cursive;
+  }
+  .tracking-luxury {
+    letter-spacing: 0.28em;
+  }
+  .tracking-wide-lux {
+    letter-spacing: 0.18em;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ken Burns slow zoom for hero slides */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.18) translate(-1.5%, -1.5%);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 7s ease-out forwards;
+}
+
+/* gentle floating */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.animate-floaty {
+  animation: floaty 4s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+::selection {
+  background: var(--lavender-soft);
+  color: var(--primary);
+}
