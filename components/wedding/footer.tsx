@@ -2,6 +2,8 @@
 
 import { Heart } from 'lucide-react'
 import { Reveal, FloralDivider } from './ui'
+import Image from 'next/image' // <-- this import is required
+import logo from '@/public/wedding/holywood-logo.png'
 
 export function Footer() {
   return (
@@ -26,6 +28,26 @@ export function Footer() {
           <p className="mt-10 font-body text-sm text-background/60">
             06 August 2026 &middot; Vijayawada
           </p>
+           {/* Logo + Credit with link */}
+          <div className="mt-12 flex flex-col items-center gap-3">
+            <a
+              href="https://www.youtube.com/channel/UC1YjTjqLkYTNNx5o9UgeWlw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2"
+            >
+              <Image
+                src={logo}
+                alt="Holywood Fx Logo"
+                width={40}
+                height={40}
+                className="rounded-md shadow-md"
+              />
+              <p className="text-xs font-body text-background/50">
+                Made by <span className="font-semibold text-gold-soft">Holywood Fx</span>
+              </p>
+            </a>
+          </div>
         </Reveal>
       </div>
     </footer>
