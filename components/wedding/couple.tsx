@@ -49,7 +49,7 @@ export function Couple() {
 
         <div className="mt-16 grid grid-cols-1 items-start gap-14 md:grid-cols-[1fr_auto_1fr] md:gap-8">
           <PortraitCard
-            src="/wedding/groom.png"
+            src="/wedding/gallery-8.png"
             role="The Groom"
             name="Ebenezer"
             description="A man of faith and gentle strength, ready to walk hand in hand into a lifetime of love and devotion."
