@@ -10,64 +10,96 @@ export function MusicPlayer() {
   const startedRef = useRef(false)
 
   useEffect(() => {
-    const audio = new Audio('/wedding/music.mp3')
-    audio.loop = true
-    audio.volume = 0.25
-    audio.preload = 'auto'
-    audioRef.current = audio
+  const audio = new Audio('/wedding/music.mp3')
+  audio.loop = false // Play only once
+  audio.volume = 0.25
+  audio.preload = 'auto'
+  audioRef.current = audio
 
-    const tryPlay = () => {
-      if (startedRef.current) return
-      audio
-        .play()
-        .then(() => {
-          startedRef.current = true
-          setPlaying(true)
-        })
-        .catch(() => {
-          /* autoplay blocked — will retry on first interaction */
-        })
-    }
+  const tryPlay = () => {
+    if (startedRef.current) return
 
-    // Attempt immediate autoplay
-    tryPlay()
-
-    // Fallback: start on first user interaction
-    const onInteract = () => {
-      tryPlay()
-      if (startedRef.current) removeListeners()
-    }
-    const removeListeners = () => {
-      window.removeEventListener('click', onInteract)
-      window.removeEventListener('scroll', onInteract)
-      window.removeEventListener('touchstart', onInteract)
-      window.removeEventListener('keydown', onInteract)
-    }
-    window.addEventListener('click', onInteract, { passive: true })
-    window.addEventListener('scroll', onInteract, { passive: true })
-    window.addEventListener('touchstart', onInteract, { passive: true })
-    window.addEventListener('keydown', onInteract)
-
-    return () => {
-      removeListeners()
-      audio.pause()
-      audioRef.current = null
-    }
-  }, [])
-
-  const toggle = () => {
-    const audio = audioRef.current
-    if (!audio) return
-    if (playing) {
-      audio.pause()
-      setPlaying(false)
-    } else {
-      audio.play().then(() => {
+    audio
+      .play()
+      .then(() => {
         startedRef.current = true
         setPlaying(true)
       })
+      .catch(() => {
+        // Autoplay blocked
+      })
+  }
+
+  // If music finishes
+  const onEnded = () => {
+    setPlaying(false)
+    startedRef.current = false
+  }
+
+  // Pause when app is hidden or phone screen is locked
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      audio.pause()
+      setPlaying(false)
     }
   }
+
+  // Resume only if user returns and it hasn't finished
+  const onFocus = () => {
+    if (!audio.ended && startedRef.current) {
+      audio.play().then(() => setPlaying(true)).catch(() => {})
+    }
+  }
+
+  audio.addEventListener('ended', onEnded)
+  document.addEventListener('visibilitychange', onVisibilityChange)
+  window.addEventListener('focus', onFocus)
+
+  tryPlay()
+
+  const onInteract = () => {
+    tryPlay()
+    if (startedRef.current) removeListeners()
+  }
+
+  const removeListeners = () => {
+    window.removeEventListener('click', onInteract)
+    window.removeEventListener('scroll', onInteract)
+    window.removeEventListener('touchstart', onInteract)
+    window.removeEventListener('keydown', onInteract)
+  }
+
+  window.addEventListener('click', onInteract, { passive: true })
+  window.addEventListener('scroll', onInteract, { passive: true })
+  window.addEventListener('touchstart', onInteract, { passive: true })
+  window.addEventListener('keydown', onInteract)
+
+  return () => {
+    removeListeners()
+    audio.pause()
+
+    audio.removeEventListener('ended', onEnded)
+    document.removeEventListener('visibilitychange', onVisibilityChange)
+    window.removeEventListener('focus', onFocus)
+
+    audioRef.current = null
+  }
+}, [])
+
+  const toggle = () => {
+  const audio = audioRef.current
+  if (!audio) return
+
+  if (playing) {
+    audio.pause()
+    setPlaying(false)
+  } else {
+    audio.play().then(() => {
+      startedRef.current = true
+      setPlaying(true)
+    }).catch(() => {})
+  }
+}
 
   return (
     <button
