@@ -33,7 +33,7 @@ export function Hero() {
             <div className="absolute inset-0 animate-kenburns">
               <Image
                 src={SLIDES[index] || '/placeholder.svg'}
-                alt="Ebenezer and Rebeca"
+                alt="Sambasivarao and Rebeca"
                 fill
                 priority
                 sizes="100vw"
@@ -83,7 +83,7 @@ export function Hero() {
           className="mt-2 flex flex-col items-center leading-none"
         >
           <span className="font-script text-6xl text-background sm:text-7xl md:text-8xl">
-            Ebenezer
+            Sambasivarao
           </span>
           <span className="my-1 flex items-center gap-3 text-gold-soft">
             <span className="h-px w-10 bg-gold-soft/60" />

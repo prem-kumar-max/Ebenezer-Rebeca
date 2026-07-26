@@ -68,7 +68,7 @@ export function Gallery() {
             >
               <Image
                 src={src || '/placeholder.svg'}
-                alt={`Ebenezer and Rebeca — photo ${i + 1}`}
+                alt={`Sambasivarao and Rebeca — photo ${i + 1}`}
                 width={600}
                 height={800}
                 sizes="(max-width: 768px) 45vw, 30vw"
@@ -119,7 +119,7 @@ export function Gallery() {
             >
               <Image
                 src={PHOTOS[active] || '/placeholder.svg'}
-                alt={`Ebenezer and Rebeca — photo ${active + 1}`}
+                alt={`Sambasivarao and Rebeca — photo ${active + 1}`}
                 width={1200}
                 height={1600}
                 className="max-h-[82vh] w-auto rounded-2xl object-contain"

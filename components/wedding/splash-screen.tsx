@@ -116,7 +116,7 @@ export function SplashScreen() {
 
       {/* Center Content */}
       <div className="relative z-10 text-center flex flex-col items-center justify-center px-6">
-        {/* Ebenezer */}
+        {/* Sambasivarao */}
         <h1
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground"
           style={{
@@ -126,7 +126,7 @@ export function SplashScreen() {
             marginBottom: '0.5rem',
           }}
         >
-          Ebenezer
+          Sambasivarao
         </h1>
 
         {/* Heart */}
