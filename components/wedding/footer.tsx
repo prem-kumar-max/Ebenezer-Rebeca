@@ -13,7 +13,7 @@ export function Footer() {
           <FloralDivider className="[&_span]:bg-gold-soft/40" />
           <p className="mt-8 text-xs uppercase tracking-luxury text-gold-soft">With Love</p>
           <h2 className="mt-4 flex flex-col items-center leading-none">
-            <span className="font-script text-5xl text-background sm:text-6xl">Sambasivarao</span>
+            <span className="font-script text-5xl text-background sm:text-6xl">Ebenezer</span>
             <span className="my-1 flex items-center gap-3 text-gold-soft">
               <span className="h-px w-8 bg-gold-soft/60" />
               <Heart className="h-4 w-4 fill-current" strokeWidth={1} />

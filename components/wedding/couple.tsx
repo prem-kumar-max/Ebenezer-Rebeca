@@ -51,7 +51,7 @@ export function Couple() {
           <PortraitCard
             src="/wedding/gallery-8.png"
             role="The Groom"
-            name="Sambasivarao"
+            name="Ebenezer"
             description="A man of faith and gentle strength, ready to walk hand in hand into a lifetime of love and devotion."
           />
 
