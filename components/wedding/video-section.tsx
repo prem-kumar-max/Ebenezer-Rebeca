@@ -1,12 +1,51 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Play } from 'lucide-react'
 import { Reveal, SectionTitle } from './ui'
 
 export function VideoSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [started, setStarted] = useState(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handlePlay = () => {
+      // Pause music when video starts
+      const musicButton = document.querySelector('[aria-label="Turn music off"], [aria-label="Turn music on"]') as HTMLButtonElement
+      if (musicButton) {
+        const isPlaying = musicButton.getAttribute('aria-pressed') === 'true'
+        if (isPlaying) {
+          musicButton.click()
+          localStorage.setItem('musicWasPlaying', 'true')
+        }
+      }
+    }
+
+    const handlePauseOrEnd = () => {
+      // Resume music if it was playing before video started
+      const musicButton = document.querySelector('[aria-label="Turn music off"], [aria-label="Turn music on"]') as HTMLButtonElement
+      if (musicButton && localStorage.getItem('musicWasPlaying') === 'true') {
+        const isCurrentlyPlaying = musicButton.getAttribute('aria-pressed') === 'true'
+        if (!isCurrentlyPlaying) {
+          musicButton.click()
+        }
+        localStorage.removeItem('musicWasPlaying')
+      }
+    }
+
+    video.addEventListener('play', handlePlay)
+    video.addEventListener('pause', handlePauseOrEnd)
+    video.addEventListener('ended', handlePauseOrEnd)
+
+    return () => {
+      video.removeEventListener('play', handlePlay)
+      video.removeEventListener('pause', handlePauseOrEnd)
+      video.removeEventListener('ended', handlePauseOrEnd)
+    }
+  }, [])
 
   const handlePlay = () => {
     const v = videoRef.current
