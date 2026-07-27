@@ -1,23 +1,55 @@
 'use client'
 
-import { useRef, useState, type FormEvent } from 'react'
+import Link from 'next/link'
+import { useRef, useState, useEffect, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, Heart } from 'lucide-react'
+import { Check, Heart, Gift } from 'lucide-react'
 import { Reveal, SectionTitle, FloralCorner } from './ui'
 import emailjs from '@emailjs/browser';
 
 
 export function Rsvp() {
 const [submitted, setSubmitted] = useState(false)
-const [giftItem, setGiftItem] = useState('')
-const [customGift, setCustomGift] = useState('') 
+const [selectedGiftFromUrl, setSelectedGiftFromUrl] = useState<{name: string; price: number} | null>(null)
+const [customGift, setCustomGift] = useState('')
+const [skipGift, setSkipGift] = useState(false)
 const [loading, setLoading] = useState(false) 
 const form = useRef<HTMLFormElement>(null);
+
+useEffect(() => {
+  const readGiftParams = () => {
+    const params = new URLSearchParams(window.location.search)
+    const giftName = params.get('gift')
+    const giftPrice = params.get('price')
+    
+    if (giftName) {
+      setSelectedGiftFromUrl({
+        name: decodeURIComponent(giftName),
+        price: parseInt(giftPrice || '0')
+      })
+    }
+  }
+  
+  readGiftParams()
+  
+  // Listen for URL changes
+  window.addEventListener('hashchange', readGiftParams)
+  return () => window.removeEventListener('hashchange', readGiftParams)
+}, [])
+
 const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault()
 
-  if (giftItem === 'other' && customGift.trim() === '') {
-    alert('Please enter your gift.')
+  let giftText = ''
+  
+  if (skipGift) {
+    giftText = 'Not giving any gift'
+  } else if (selectedGiftFromUrl) {
+    giftText = `${selectedGiftFromUrl.name} - ₹${selectedGiftFromUrl.price.toLocaleString()}`
+  } else if (customGift.trim()) {
+    giftText = customGift.trim()
+  } else {
+    alert('Please select a gift, type a custom gift, or check "I don\'t want to give a gift".')
     return
   }
 
@@ -31,7 +63,7 @@ const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     email: formData.get('email'),
     guests: formData.get('guests'),
     attend: formData.get('attend'),
-    gift: giftItem === 'other' ? customGift : giftItem,
+    gift: giftText,
     message: formData.get('message'),
   }
 
@@ -54,8 +86,6 @@ const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
     setSubmitted(true)
     form.current?.reset()
-    setGiftItem('')
-    setCustomGift('')
   } catch (error) {
     console.error(error)
     alert('Failed to send RSVP.')
@@ -63,24 +93,6 @@ const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(false)
   }
 }
-
-//   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-//   e.preventDefault()
-
-//   if (giftItem === 'other' && customGift.trim() === '') {
-//     alert('Please enter your gift.')
-//     return
-//   }
-
-//   const finalGift =
-//     giftItem === 'other' ? customGift.trim() : giftItem
-
-//   console.log({
-//     gift: finalGift,
-//   })
-
-//   setSubmitted(true)
-// }
 
   const inputClass =
     'w-full rounded-xl border border-border bg-background px-4 py-3 font-body text-base text-foreground outline-none transition placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-2 focus:ring-lavender-soft'
@@ -189,74 +201,112 @@ const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
                       </select>
                     </div>
                   </div>
-  <div>
-    <label className={labelClass} htmlFor="giftItem">
-      Wedding Gift Inventory
-    </label>
 
-    <select
-  id="giftItem"
-  name="giftItem"
-  value={giftItem}
-  onChange={(e) => setGiftItem(e.target.value)}
-  className={inputClass}
-  required
->
-  <option value="">Select a Gift</option>
+                  <div className="space-y-4">
+                    {selectedGiftFromUrl ? (
+                      <>
+                        <div>
+                          <label className={labelClass}>Selected Gift</label>
+                        </div>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="rounded-xl border-2 border-gold bg-gold/5 p-4"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <Gift className="h-5 w-5 text-gold" />
+                              <div>
+                                <p className="font-semibold text-foreground">{selectedGiftFromUrl.name}</p>
+                                <p className="text-sm text-muted-foreground">From gift registry</p>
+                              </div>
+                            </div>
+                            <p className="font-script text-2xl text-gold">₹{selectedGiftFromUrl.price.toLocaleString()}</p>
+                          </div>
+                        </motion.div>
+                        <Link
+                          href="/gift"
+                          className="inline-block text-sm text-gold hover:text-gold/80 underline"
+                        >
+                          Change gift selection
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <label className={labelClass}>Gift Options</label>
+                          <p className="text-xs text-muted-foreground mb-3">Choose one option below:</p>
+                        </div>
 
-  <option value="Bed">Bed</option>
-  <option value="Sofa">Sofa</option>
-  <option value="TV">TV</option>
-  <option value="Geyser">Geyser</option>
-  <option value="Microwave">Microwave</option>
-  <option value="Utensils">Utensils</option>
-  <option value="Coffee Mugs">Coffee Mugs</option>
-  <option value="Cookware Set">Cookware Set</option>
-  <option value="Coasters">Coasters</option>
-  <option value="Dining Table & Chairs">Dining Table & Chairs</option>
-  <option value="Wardrobe / Closet">Wardrobe / Closet</option>
-  <option value="Refrigerator">Refrigerator</option>
-  <option value="Washing Machine">Washing Machine</option>
-  <option value="Mixer / Blender">Mixer / Blender</option>
-  <option value="Pressure Cooker / Rice Cooker">Pressure Cooker / Rice Cooker</option>
-  <option value="Dinnerware Set">Dinnerware Set</option>
-  <option value="Cutlery Set">Cutlery Set</option>
-  <option value="Bedsheets & Pillow Covers">Bedsheets & Pillow Covers</option>
-  <option value="Comforter / Quilt">Comforter / Quilt</option>
-  <option value="Towels Set">Towels Set</option>
-  <option value="Curtains">Curtains</option>
-  <option value="Rugs / Carpets">Rugs / Carpets</option>
-  <option value="Lamps / Night Lights">Lamps / Night Lights</option>
-  <option value="Wall Clock">Wall Clock</option>
-  <option value="Photo Frames">Photo Frames</option>
-  <option value="Indoor Plants / Planters">Indoor Plants / Planters</option>
-  <option value="Decorative Showpieces">Decorative Showpieces</option>
-  <option value="Candle Set / Diffuser">Candle Set / Diffuser</option>
-  <option value="Bluetooth Speaker">Bluetooth Speaker</option>
-  <option value="Water Purifier">Water Purifier</option>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="rounded-xl border-2 border-gold/20 bg-muted/30 p-4"
+                        >
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Select a gift from our <Link href="/gift" className="font-semibold text-gold hover:underline">gift registry</Link>
+                          </p>
+                        </motion.div>
 
-  <option value="other">Other (Type Your Gift)</option>
-</select>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="rounded-xl border-2 border-gold/20 bg-muted/30 p-4"
+                        >
+                          <label className="flex items-center gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={customGift.length > 0}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setCustomGift('')
+                                  setSkipGift(false)
+                                } else {
+                                  setCustomGift('')
+                                }
+                              }}
+                              className="h-4 w-4 rounded border-gold/50"
+                            />
+                            <span className="font-medium text-foreground">I want to give a custom gift</span>
+                          </label>
+                          {customGift !== null && (
+                            <input
+                              type="text"
+                              value={customGift}
+                              onChange={(e) => {
+                                setCustomGift(e.target.value)
+                                setSkipGift(false)
+                              }}
+                              placeholder="Type your gift (e.g., Gold Watch)"
+                              className={`${inputClass} mt-3`}
+                            />
+                          )}
+                        </motion.div>
 
-  {giftItem === 'other' && (
-  <div>
-    <label className={labelClass} htmlFor="customGift">
-      Custom Gift
-    </label>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="rounded-xl border-2 border-gold/20 bg-muted/30 p-4"
+                        >
+                          <label className="flex items-center gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={skipGift}
+                              onChange={(e) => {
+                                setSkipGift(e.target.checked)
+                                if (e.target.checked) {
+                                  setCustomGift('')
+                                }
+                              }}
+                              className="h-4 w-4 rounded border-gold/50"
+                            />
+                            <span className="font-medium text-foreground">I don't want to give a gift</span>
+                          </label>
+                        </motion.div>
+                      </>
+                    )}
+                  </div>
 
-    <input
-      id="customGift"
-      name="customGift"
-      type="text"
-      value={customGift}
-      onChange={(e) => setCustomGift(e.target.value)}
-      className={inputClass}
-      placeholder="Enter your gift"
-      required={giftItem === 'other'}
-    />
-  </div>
-)}
-</div>
                   <div>
                     <label className={labelClass} htmlFor="message">
                       A Message for the Couple
@@ -271,12 +321,12 @@ const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
                   </div>
 
                   <button
-  type="submit"
-  disabled={loading}
-  className="w-full rounded-full bg-primary px-6 py-4 text-xs uppercase tracking-luxury text-primary-foreground transition hover:opacity-90 disabled:opacity-50"
->
-  {loading ? 'Sending...' : 'Send RSVP'}
-</button>
+                    type="submit"
+                    disabled={loading}
+                    className="w-full rounded-full bg-primary px-6 py-4 text-xs uppercase tracking-luxury text-primary-foreground transition hover:opacity-90 disabled:opacity-50"
+                  >
+                    {loading ? 'Sending...' : 'Send RSVP'}
+                  </button>
                 </motion.form>
               )}
             </AnimatePresence>

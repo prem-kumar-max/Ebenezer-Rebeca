@@ -9,7 +9,6 @@ import { Gallery } from '@/components/wedding/gallery'
 import { Venue } from '@/components/wedding/venue'
 import { Rsvp } from '@/components/wedding/rsvp'
 import { Footer } from '@/components/wedding/footer'
-import { MusicPlayer } from '@/components/wedding/music-player'
 
 export default function Page() {
   return (
@@ -25,7 +24,6 @@ export default function Page() {
       <Venue />
       <Rsvp />
       <Footer />
-      <MusicPlayer />
     </main>
   )
 }

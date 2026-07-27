@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Music, VolumeX } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -8,11 +9,23 @@ export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [playing, setPlaying] = useState(false)
   const startedRef = useRef(false)
+  const pathname = usePathname()
+  
+  const isGiftPage = pathname === '/gift'
+  const normalVolume = 0.25
+  const lowVolume = 0.08
+
+  useEffect(() => {
+    const targetVolume = isGiftPage ? lowVolume : normalVolume
+    if (audioRef.current) {
+      audioRef.current.volume = targetVolume
+    }
+  }, [isGiftPage])
 
   useEffect(() => {
   const audio = new Audio('/wedding/music.mp3')
   audio.loop = false // Play only once
-  audio.volume = 0.25
+  audio.volume = isGiftPage ? lowVolume : normalVolume
   audio.preload = 'auto'
   audioRef.current = audio
 

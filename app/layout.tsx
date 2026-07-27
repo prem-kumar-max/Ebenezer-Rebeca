@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Cormorant_Garamond, Great_Vibes } from 'next/font/google'
 import './globals.css'
 import { SplashScreen } from '@/components/wedding/splash-screen'
+import { MusicPlayer } from '@/components/wedding/music-player'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="antialiased">
         <SplashScreen />
         {children}
+        <MusicPlayer />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

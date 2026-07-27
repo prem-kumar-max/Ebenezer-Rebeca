@@ -11,6 +11,7 @@ const LINKS = [
   { label: 'Gallery', href: '#gallery' },
   { label: 'Video', href: '#video' },
   { label: 'Venue', href: '#venue' },
+  { label: 'Gift', href: '/gift' },
   { label: 'RSVP', href: '#rsvp' },
 ]
 
