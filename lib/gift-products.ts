@@ -20,7 +20,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '2',
     name: 'Modern Sofa Set',
     category: 'Furniture',
-    price: 25000,
+    price: 35000,
     image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop',
     description: 'Comfortable 3-seater sofa with cushions'
   },
@@ -52,7 +52,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '6',
     name: 'Stainless Steel Utensils Set',
     category: 'Kitchen',
-    price: 3500,
+    price: 5500,
     image: 'https://images.pexels.com/photos/30981356/pexels-photo-30981356.jpeg',
     description: '12-piece cookware set with lids'
   },
@@ -60,7 +60,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '7',
     name: 'Coffee Mug Set',
     category: 'Kitchenware',
-    price: 1200,
+    price: 1800,
     image: 'https://images.pexels.com/photos/2121530/pexels-photo-2121530.jpeg',
     description: 'Set of 6 ceramic coffee mugs'
   },
@@ -100,7 +100,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '12',
     name: 'Refrigerator',
     category: 'Appliances',
-    price: 32000,
+    price: 35000,
     image: 'https://media.istockphoto.com/id/2162681544/photo/modern-kitchen-with-front-view-of-refrigerator-and-white-cabinets.jpg?s=1024x1024&w=is&k=20&c=iVoyZnBvZl9PQnZwvtE5G8sBz8dZN7_o-bO_JRCK2BM=',
     description: '300L double-door refrigerator'
   },
@@ -108,7 +108,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '13',
     name: 'Washing Machine',
     category: 'Appliances',
-    price: 28000,
+    price: 30000,
     image: 'https://images.pexels.com/photos/6492065/pexels-photo-6492065.jpeg',
     description: '7kg fully automatic washing machine'
   },
@@ -116,7 +116,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '14',
     name: 'Mixer / Blender',
     category: 'Kitchen',
-    price: 4000,
+    price: 8000,
     image: 'https://images.pexels.com/photos/19599327/pexels-photo-19599327.jpeg',
     description: 'Heavy-duty mixer grinder'
   },
@@ -132,7 +132,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '16',
     name: 'Dinnerware Set',
     category: 'Kitchenware',
-    price: 2500,
+    price: 4500,
     image: 'https://images.pexels.com/photos/3847440/pexels-photo-3847440.jpeg',
     description: '32-piece dinner set for 8'
   },
@@ -148,7 +148,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '18',
     name: 'Bedsheets & Pillow Covers',
     category: 'Bedding',
-    price: 2800,
+    price: 3800,
     image: 'https://images.pexels.com/photos/15195270/pexels-photo-15195270.jpeg',
     description: 'Set of 2 cotton bedsheets with pillow covers'
   },
@@ -156,7 +156,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '19',
     name: 'Comforter / Quilt',
     category: 'Bedding',
-    price: 4500,
+    price: 5500,
     image: 'https://images.pexels.com/photos/7061059/pexels-photo-7061059.jpeg',
     description: 'Quilted super king size comforter'
   },
@@ -220,7 +220,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     id: '27',
     name: 'Decorative Showpieces',
     category: 'Decor',
-    price: 2500,
+    price: 5500,
     image: 'https://images.pexels.com/photos/38508744/pexels-photo-38508744.jpeg',
     description: 'Set of 3 decorative pieces'
   },
@@ -249,163 +249,115 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     description: 'RO+UV water purification system'
   },
   {
-  id: '31',
-  name: 'Gold Necklace Set',
-  category: 'Jewelry',
-  price: 150000,
-  image: 'https://images.pexels.com/photos/20100135/pexels-photo-20100135.jpeg',
-  description: '22K gold necklace with matching earrings'
-},
-{
-  id: '32',
-  name: 'Silver Dinner Set',
-  category: 'Luxury Kitchenware',
-  price: 45000,
-  image: 'https://images.pexels.com/photos/11857901/pexels-photo-11857901.jpeg',
-  description: 'Pure silver 32-piece dinner set'
-},
-{
-  id: '33',
-  name: 'Diamond Ring',
-  category: 'Jewelry',
-  price: 200000,
-  image: 'https://images.pexels.com/photos/12427696/pexels-photo-12427696.jpeg',
-  description: 'Elegant solitaire diamond ring'
-},
-{
-  id: '34',
-  name: 'Luxury Watch',
-  category: 'Accessories',
-  price: 120000,
-  image: 'https://images.pexels.com/photos/28135838/pexels-photo-28135838.jpeg',
-  description: 'Premium Swiss automatic wristwatch'
-},
-{
-  id: '35',
-  name: 'Gold Coin Set',
-  category: 'Jewelry',
-  price: 100000,
-  image: 'https://images.pexels.com/photos/8442342/pexels-photo-8442342.jpeg',
-  description: 'Set of 10g 22K gold coins'
-},
-{
-  id: '36',
-  name: 'Silver Items',
-  category: 'Decor',
-  price: 25000,
-  image: 'https://images.pexels.com/photos/14644999/pexels-photo-14644999.jpeg',
-  description: 'Pair of handcrafted silver idols'
-},
-{
-  id: '37',
-  name: 'Luxury Perfume Collection',
-  category: 'Fragrance',
-  price: 15000,
-  image: 'https://images.pexels.com/photos/28664171/pexels-photo-28664171.jpeg',
-  description: 'Set of 3 premium branded perfumes'
-},
-{
-  id: '38',
-  name: 'Crystal Chandelier',
-  category: 'Lighting',
-  price: 50000,
-  image: 'https://images.pexels.com/photos/12024171/pexels-photo-12024171.jpeg',
-  description: 'Elegant crystal chandelier for living room'
-},
-{
-  id: '39',
-  name: 'Luxury Sofa Recliner',
-  category: 'Furniture',
-  price: 85000,
-  image: 'https://images.pexels.com/photos/8135275/pexels-photo-8135275.jpeg',
-  description: 'Premium leather recliner sofa set'
-},
-{
-  id: '40',
-  name: 'Gold-Plated Cutlery Set',
-  category: 'Luxury Kitchenware',
-  price: 30000,
-  image: 'https://images.pexels.com/photos/8559083/pexels-photo-8559083.jpeg',
-  description: '24-piece gold-plated stainless steel cutlery'
-},
-{
-  id: '41',
-  name: 'Silver Tea Set',
-  category: 'Luxury Kitchenware',
-  price: 40000,
-  image: 'https://images.pexels.com/photos/38003571/pexels-photo-38003571.jpeg',
-  description: 'Handcrafted silver tea set with tray'
-},
-{
-  id: '42',
-  name: 'Luxury Bed Linen',
-  category: 'Bedding',
-  price: 25000,
-  image: 'https://images.pexels.com/photos/31902663/pexels-photo-31902663.jpeg',
-  description: 'Egyptian cotton king-size bed linen set'
-},
-{
-  id: '43',
-  name: 'Gold Bracelet',
-  category: 'Jewelry',
-  price: 170000,
-  image: 'https://images.pexels.com/photos/37485307/pexels-photo-37485307.jpeg',
-  description: '22K gold bracelet with intricate design'
-},
-{
-  id: '44',
-  name: 'Silver Candle Holders',
-  category: 'Decor',
-  price: 15000,
-  image: 'https://images.pexels.com/photos/14312935/pexels-photo-14312935.jpeg',
-  description: 'Pair of handcrafted silver candle holders'
-},
-{
-  id: '45',
-  name: 'Luxury Dinnerware Set',
-  category: 'Kitchenware',
-  price: 35000,
-  image: 'https://images.pexels.com/photos/14646769/pexels-photo-14646769.jpeg',
-  description: 'Bone china dinnerware with gold rim'
-},
-{
-  id: '46',
-  name: 'Gold Earrings',
-  category: 'Jewelry',
-  price: 225000,
-  image: 'https://images.pexels.com/photos/12168883/pexels-photo-12168883.jpeg',
-  description: '22K gold stud earrings'
-},
-{
-  id: '47',
+    id: '31',
+    name: 'Silver Dinner Set',
+    category: 'Luxury Kitchenware',
+    price: 45000,
+    image: 'https://images.pexels.com/photos/11857901/pexels-photo-11857901.jpeg',
+    description: 'Pure silver 32-piece dinner set'
+  },
+  {
+    id: '32',
+    name: 'Luxury Watch',
+    category: 'Accessories',
+    price: 10000,
+    image: 'https://images.pexels.com/photos/28135838/pexels-photo-28135838.jpeg',
+    description: 'Premium Swiss automatic wristwatch'
+  },
+  {
+    id: '33',
+    name: 'Silver Items',
+    category: 'Decor',
+    price: 25000,
+    image: 'https://images.pexels.com/photos/14644999/pexels-photo-14644999.jpeg',
+    description: 'Pair of handcrafted silver idols'
+  },
+  {
+    id: '34',
+    name: 'Luxury Perfume Collection',
+    category: 'Fragrance',
+    price: 15000,
+    image: 'https://images.pexels.com/photos/28664171/pexels-photo-28664171.jpeg',
+    description: 'Set of 3 premium branded perfumes'
+  },
+  {
+    id: '35',
+    name: 'Crystal Chandelier',
+    category: 'Lighting',
+    price: 50000,
+    image: 'https://images.pexels.com/photos/12024171/pexels-photo-12024171.jpeg',
+    description: 'Elegant crystal chandelier for living room'
+  },
+  {
+    id: '36',
+    name: 'Luxury Sofa Recliner',
+    category: 'Furniture',
+    price: 85000,
+    image: 'https://images.pexels.com/photos/8135275/pexels-photo-8135275.jpeg',
+    description: 'Premium leather recliner sofa set'
+  },
+  {
+    id: '37',
+    name: 'Gold-Plated Cutlery Set',
+    category: 'Luxury Kitchenware',
+    price: 30000,
+    image: 'https://images.pexels.com/photos/8559083/pexels-photo-8559083.jpeg',
+    description: '24-piece gold-plated stainless steel cutlery'
+  },
+  {
+    id: '38',
+    name: 'Silver Tea Set',
+    category: 'Luxury Kitchenware',
+    price: 40000,
+    image: 'https://images.pexels.com/photos/38003571/pexels-photo-38003571.jpeg',
+    description: 'Handcrafted silver tea set with tray'
+  },
+  {
+    id: '39',
+    name: 'Luxury Bed Linen',
+    category: 'Bedding',
+    price: 25000,
+    image: 'https://images.pexels.com/photos/31902663/pexels-photo-31902663.jpeg',
+    description: 'Egyptian cotton king-size bed linen set'
+  },
+  {
+    id: '40',
+    name: 'Silver Candle Holders',
+    category: 'Decor',
+    price: 15000,
+    image: 'https://images.pexels.com/photos/14312935/pexels-photo-14312935.jpeg',
+    description: 'Pair of handcrafted silver candle holders'
+  },
+  {
+    id: '41',
+    name: 'Luxury Dinnerware Set',
+    category: 'Kitchenware',
+    price: 35000,
+    image: 'https://images.pexels.com/photos/14646769/pexels-photo-14646769.jpeg',
+    description: 'Bone china dinnerware with gold rim'
+  },
+  {
+    id: '42',
     name: 'Silver Serving Bowls',
     category: 'Luxury Kitchenware',
     price: 28000,
     image: 'https://images.pexels.com/photos/13252990/pexels-photo-13252990.jpeg',
     description: 'Set of 4 handcrafted silver bowls'
-},
-{
-  id: '48',
+  },
+  {
+    id: '43',
     name: 'Luxury Carpet',
     category: 'Decor',
     price: 60000,
     image: 'https://images.pexels.com/photos/32536660/pexels-photo-32536660.jpeg',
     description: 'Handwoven Persian-style carpet'
-},
-{
-  id: '49',
-    name: 'Gold Pendant',
-    category: 'Jewelry',
-    price: 145000,
-    image: 'https://images.pexels.com/photos/4595723/pexels-photo-4595723.jpeg',
-    description: '22K gold pendant with chain'
-},
-{
-  id: '50',
+  },
+  {
+    id: '44',
     name: 'Silver Wine Glasses',
     category: 'Luxury Kitchenware',
     price: 32000,
     image: 'https://images.pexels.com/photos/36402455/pexels-photo-36402455.jpeg',
     description: 'Set of 6 handcrafted silver wine glasses'
-}
+  }
 ]
