@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, ChevronDown, PlayCircle, MapPin } from 'lucide-react'
+import { Heart, ChevronDown, PlayCircle, MapPin, Gift } from 'lucide-react'
 
 const SLIDES = ['/wedding/hero-1.png', '/wedding/hero-2.png', '/wedding/hero-3.png']
 
@@ -127,6 +127,12 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-gold-soft/70 bg-gold/20 px-6 py-3 text-xs uppercase tracking-wide-lux text-background transition hover:bg-gold/40"
           >
             RSVP
+          </a>
+            <a
+            href="/gift"
+            className="inline-flex items-center gap-2 rounded-full border border-background/70 px-6 py-3 text-xs uppercase tracking-wide-lux text-background transition hover:bg-background/10"
+          >
+            <Gift className="h-4 w-4" strokeWidth={1.5} /> Gift Registry
           </a>
         </motion.div>
       </div>

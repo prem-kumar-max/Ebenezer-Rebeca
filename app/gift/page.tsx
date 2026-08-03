@@ -119,10 +119,19 @@ export default function GiftPage() {
                 <p className="mb-4 line-clamp-2 text-xs text-muted-foreground">
                   {product.description}
                 </p>
-                <div className="flex items-baseline justify-between">
+                <div className="mb-3 flex items-baseline justify-between">
                   <span className="font-script text-2xl text-gold">₹{product.price.toLocaleString()}</span>
                   <ShoppingBag className="h-4 w-4 text-muted-foreground transition group-hover:text-foreground" />
                 </div>
+                <a
+                  href={product.flipkartLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="block w-full rounded bg-gold px-3 py-2 text-center text-xs font-semibold text-white hover:bg-purple-900 transition"
+                >
+                  View on Online
+                </a>
               </div>
             </motion.div>
           ))}
